@@ -1,24 +1,24 @@
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import { useAppDispatch, useAppRootState } from '../store';
-import { useEffect, useRef, useState } from 'react';
-import { fetchAllCats, fetchFavoriteCats } from '../store/catsSlice';
-import '../styles/views/AllCats.scss';
-import { increasePaginationPage } from '../store/renderSlice';
-import { Form, Spinner } from 'react-bootstrap';
-import { Cat } from '../types/cats';
-import emptyHeart from '../assets/emptyHeart.svg';
-import fullHeat from '../assets/fullHeart.svg';
-import { useLocation } from 'react-router-dom';
-import PaginationComponent from '../components/PaginationComponent';
-import { IMG_PER_PAGE } from '../consts';
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import { useAppDispatch, useAppRootState } from "../store";
+import { useEffect, useRef, useState } from "react";
+import { fetchAllCats, fetchFavoriteCats } from "../store/catsSlice";
+import "../styles/views/AllCats.scss";
+import { increasePaginationPage } from "../store/renderSlice";
+import { Form, Spinner } from "react-bootstrap";
+import { Cat } from "../types/cats";
+import emptyHeart from "../assets/emptyHeart.svg";
+import fullHeat from "../assets/fullHeart.svg";
+import { useLocation } from "react-router-dom";
+import PaginationComponent from "../components/PaginationComponent";
+import { IMG_PER_PAGE } from "../consts";
 
 function AllCats() {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const { cats, favoriteCats, loadingFirst, loadingSecond } = useAppRootState(
-    (state) => state.cats
+    (state) => state.cats,
   );
 
   const containerRef = useRef(null);
@@ -31,7 +31,7 @@ function AllCats() {
 
   const [actualCats, setActualCats] = useState<Cat[]>([]);
   const [favorites, setFavorites] = useState<string[]>(() => {
-    const storedFavorites = localStorage.getItem('favorites');
+    const storedFavorites = localStorage.getItem("favorites");
     return storedFavorites ? JSON.parse(storedFavorites) : [];
   });
 
@@ -55,7 +55,7 @@ function AllCats() {
   function likeCat(id: string) {
     if (!favorites.includes(id)) {
       const updatedCats = actualCats.map((cat) =>
-        cat.id === id ? { ...cat, liked: true } : cat
+        cat.id === id ? { ...cat, liked: true } : cat,
       );
       setActualCats(updatedCats);
       setFavorites((prevFavorites: string[]) => [...prevFavorites, id]);
@@ -67,7 +67,7 @@ function AllCats() {
   }
 
   useEffect(() => {
-    if (location.pathname === '/favorites') {
+    if (location.pathname === "/favorites") {
       setLoading(loadingSecond);
     } else {
       setLoading(loadingFirst);
@@ -79,7 +79,7 @@ function AllCats() {
   };
 
   useEffect(() => {
-    if (location.pathname === '/favorites') {
+    if (location.pathname === "/favorites") {
       setMaxPage(Math.ceil(favorites.length / IMG_PER_PAGE));
     } else {
       setMaxPage(0);
@@ -87,7 +87,7 @@ function AllCats() {
   }, [location, favorites]);
 
   useEffect(() => {
-    localStorage.setItem('favorites', JSON.stringify(favorites));
+    localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
   useEffect(() => {
@@ -98,7 +98,7 @@ function AllCats() {
         }
       }
       try {
-        if (location.pathname === '/favorites') {
+        if (location.pathname === "/favorites") {
           const startIndex = (paginationPage - 1) * IMG_PER_PAGE;
           const endIndex = startIndex + IMG_PER_PAGE;
           const paginatedCats = favorites.slice(startIndex, endIndex);
@@ -107,7 +107,7 @@ function AllCats() {
           await dispatch(fetchAllCats({ page: paginationPage }));
         }
       } catch (error) {
-        console.error('Ошибка при загрузке котов:', error);
+        console.error("Ошибка при загрузке котов:", error);
       }
     };
 
@@ -115,7 +115,7 @@ function AllCats() {
   }, [paginationPage]);
 
   useEffect(() => {
-    if (location.pathname === '/favorites') {
+    if (location.pathname === "/favorites") {
       if (withPag) {
         setActualCats(favoriteCats);
       } else {

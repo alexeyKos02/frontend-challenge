@@ -1,6 +1,6 @@
-import { Route, Routes } from 'react-router-dom';
-import AllCats from '../views/AllCats';
-import '../styles/components/AppRouter.css';
+import { Route, Routes } from "react-router-dom";
+import AllCats from "../views/AllCats";
+import "../styles/components/AppRouter.css";
 function AppRouter() {
   return (
     <div className="page">

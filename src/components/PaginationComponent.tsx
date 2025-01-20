@@ -1,7 +1,7 @@
-import { Pagination } from 'react-bootstrap';
-import { useAppDispatch, useAppRootState } from '../store';
-import { increasePaginationPage } from '../store/renderSlice';
-import React from 'react';
+import { Pagination } from "react-bootstrap";
+import { useAppDispatch, useAppRootState } from "../store";
+import { increasePaginationPage } from "../store/renderSlice";
+import React from "react";
 
 interface PaginationComponentProps {
   className?: string;
@@ -9,7 +9,7 @@ interface PaginationComponentProps {
 }
 
 const PaginationComponent: React.FC<PaginationComponentProps> = (
-  props: PaginationComponentProps
+  props: PaginationComponentProps,
 ) => {
   const { count } = props;
   const { paginationPage } = useAppRootState((state) => state.render);

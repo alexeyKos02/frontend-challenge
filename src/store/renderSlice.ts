@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface renderState {
   paginationPage: number;
@@ -9,7 +9,7 @@ const initialState: renderState = {
 };
 
 const renderSlice = createSlice({
-  name: 'render',
+  name: "render",
   initialState,
   reducers: {
     increasePaginationPage(state, action: PayloadAction<number>) {

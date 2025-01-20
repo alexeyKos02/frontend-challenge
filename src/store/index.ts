@@ -1,7 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit';
-import catsSlice from './catsSlice';
-import renderSlice from './renderSlice';
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { configureStore } from "@reduxjs/toolkit";
+import catsSlice from "./catsSlice";
+import renderSlice from "./renderSlice";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
   reducer: {

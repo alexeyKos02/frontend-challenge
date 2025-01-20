@@ -1,3 +1,3 @@
-import { CatResponse } from './cats';
+import { CatResponse } from "./cats";
 
 export type ResponseCats = CatResponse[];

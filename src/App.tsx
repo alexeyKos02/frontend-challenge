@@ -1,17 +1,17 @@
-import './App.css';
-import MainMenu from './components/MainMenu';
-import { BrowserRouter } from 'react-router-dom';
-import AppRouter from './components/AppRouter';
+import "./App.css";
+import MainMenu from "./components/MainMenu";
+import {HashRouter} from "react-router-dom";
+import AppRouter from "./components/AppRouter";
 
 function App() {
-  return (
-    <>
-      <BrowserRouter basename="/frontend-challenge">
-        <MainMenu className="main-menu" />
-        <AppRouter />
-      </BrowserRouter>
-    </>
-  );
+    return (
+        <>
+            <HashRouter>
+                <MainMenu className="main-menu"/>
+                <AppRouter/>
+            </HashRouter>
+        </>
+    );
 }
 
 export default App;
