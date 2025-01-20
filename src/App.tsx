@@ -6,7 +6,7 @@ import AppRouter from './components/AppRouter';
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="/frontend-challenge">
         <MainMenu className="main-menu" />
         <AppRouter />
       </BrowserRouter>
