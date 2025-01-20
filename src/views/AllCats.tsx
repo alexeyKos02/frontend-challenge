@@ -79,6 +79,7 @@ function AllCats() {
   };
 
   useEffect(() => {
+    console.log("asdsad");
     if (location.pathname === "/favorites") {
       setMaxPage(Math.ceil(favorites.length / IMG_PER_PAGE));
     } else {
@@ -112,7 +113,7 @@ function AllCats() {
     };
 
     loadCats();
-  }, [paginationPage]);
+  }, [paginationPage, location]);
 
   useEffect(() => {
     if (location.pathname === "/favorites") {
@@ -128,7 +129,7 @@ function AllCats() {
         setActualCats([...actualCats, ...cats]);
       }
     }
-  }, [cats, favoriteCats]);
+  }, [cats, favoriteCats, location]);
 
   useEffect(() => {
     if (isBottom) {
@@ -149,6 +150,9 @@ function AllCats() {
       </div>
       <div className="cats-item" ref={containerRef} onScroll={handleScroll}>
         {loading && <Spinner animation="border" className="spinner" />}
+        {!loading && actualCats.length <= 0 && (
+          <span className="center-text">Пусто</span>
+        )}
         {(!withPag || (withPag && !loading)) && (
           <Row xs={3} md={5} className="g-4">
             {actualCats.map((cat) => (
