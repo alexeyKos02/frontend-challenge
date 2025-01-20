@@ -18,7 +18,7 @@ const MainMenu: React.FC<MainMenuProps> = (props) => {
         className={`${props.className || ""}`}
       >
         <Container>
-          <Navbar.Brand href="#home">Котики</Navbar.Brand>
+          <Navbar.Brand>Котики</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
