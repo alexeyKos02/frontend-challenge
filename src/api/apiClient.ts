@@ -13,8 +13,8 @@ apiClient.interceptors.request.use(
       api_key: apiKey,
     };
 
-    console.info("API Base URL:", baseApiUrl);
-    console.info("API Key:", apiKey);
+    // console.info("API Base URL:", baseApiUrl);
+    // console.info("API Key:", apiKey);
 
     return config;
   },

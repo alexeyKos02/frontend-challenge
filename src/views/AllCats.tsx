@@ -79,12 +79,13 @@ function AllCats() {
   };
 
   useEffect(() => {
-    console.log("asdsad");
     if (location.pathname === "/favorites") {
       setMaxPage(Math.ceil(favorites.length / IMG_PER_PAGE));
     } else {
       setMaxPage(0);
     }
+    console.log("alexx");
+    dispatch(increasePaginationPage(1));
   }, [location, favorites]);
 
   useEffect(() => {
@@ -185,13 +186,19 @@ function AllCats() {
           </Row>
         )}
       </div>
-      {!withPag && loading && (
-        <div className="loader">
-          <Spinner animation="border" className="spinner" />
-          Загрузка котиков
+      {actualCats.length > 0 && (
+        <div>
+          {!withPag && loading && (
+            <div className="loader">
+              <Spinner animation="border" className="spinner" />
+              Загрузка котиков
+            </div>
+          )}
+          {withPag && (
+            <PaginationComponent count={maxPage ? maxPage : undefined} />
+          )}
         </div>
       )}
-      {withPag && <PaginationComponent count={maxPage ? maxPage : undefined} />}
     </>
   );
 }
