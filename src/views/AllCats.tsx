@@ -67,6 +67,18 @@ function AllCats() {
   }
 
   useEffect(() => {
+    if (!actualCats.length) {
+      if (paginationPage > 1) {
+        dispatch(increasePaginationPage(paginationPage - 1));
+      }
+    }
+  }, [actualCats]);
+
+  useEffect(() => {
+    dispatch(increasePaginationPage(1));
+  }, [location]);
+
+  useEffect(() => {
     if (location.pathname === "/favorites") {
       setLoading(loadingSecond);
     } else {
@@ -84,8 +96,6 @@ function AllCats() {
     } else {
       setMaxPage(0);
     }
-    console.log("alexx");
-    dispatch(increasePaginationPage(1));
   }, [location, favorites]);
 
   useEffect(() => {
@@ -101,6 +111,7 @@ function AllCats() {
       }
       try {
         if (location.pathname === "/favorites") {
+          console.log("local");
           const startIndex = (paginationPage - 1) * IMG_PER_PAGE;
           const endIndex = startIndex + IMG_PER_PAGE;
           const paginatedCats = favorites.slice(startIndex, endIndex);
