@@ -21,8 +21,8 @@ const MainMenu: React.FC<MainMenuProps> = (props) => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/">Все милахи</Nav.Link>
-              <Nav.Link href="/favorites">Любимые милахи</Nav.Link>
+              <Nav.Link href="/frontend-challenge/">Все милахи</Nav.Link>
+              <Nav.Link href="/frontend-challenge/favorites">Любимые милахи</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
