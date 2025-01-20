@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface rendserState {
+interface renderState {
   paginationPage: number;
 }
 
-const initialState: rendserState = {
+const initialState: renderState = {
   paginationPage: 1,
 };
 

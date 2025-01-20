@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CatResponse } from '../types/cats';
-import { Cat } from '../types/cats';
+import { Cat, CatResponse } from '../types/cats';
 import { fetchCats, fetchCatsByID } from '../api/catsApi';
 import { ResponseCats } from '../types/api';
 
@@ -29,8 +28,7 @@ export const fetchAllCats = createAsyncThunk<ResponseCats, FetchCatsParams>(
   'cats/fetchCats',
   async ({ page }, { rejectWithValue }) => {
     try {
-      const data = await fetchCats(page);
-      return data;
+      return await fetchCats(page);
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -41,8 +39,7 @@ export const fetchFavoriteCats = createAsyncThunk<ResponseCats, string[]>(
   'cats/fetchFavoriteCats',
   async (IDs, { rejectWithValue }) => {
     try {
-      const data = await fetchCatsByID(IDs);
-      return data;
+      return await fetchCatsByID(IDs);
     } catch (error) {
       return rejectWithValue(error);
     }

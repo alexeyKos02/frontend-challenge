@@ -1,6 +1,7 @@
 import { Pagination } from 'react-bootstrap';
 import { useAppDispatch, useAppRootState } from '../store';
 import { increasePaginationPage } from '../store/renderSlice';
+import React from 'react';
 
 interface PaginationComponentProps {
   className?: string;
