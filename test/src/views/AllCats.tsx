@@ -17,21 +17,23 @@ import { IMG_PER_PAGE } from '../consts';
 function AllCats() {
   const location = useLocation();
   const dispatch = useAppDispatch();
+  const { cats, favoriteCats, loadingFirst, loadingSecond } = useAppRootState(
+    (state) => state.cats
+  );
 
   const containerRef = useRef(null);
   const [isBottom, setIsBottom] = useState(false);
   const [withPag, setWithPag] = useState(true);
-  const { cats, favoriteCats, loadingFirst, loadingSecond } = useAppRootState(
-    (state) => state.cats
-  );
+  const [loading, setLoading] = useState<boolean>(false);
+
   const [maxPage, setMaxPage] = useState(0);
   const { paginationPage } = useAppRootState((state) => state.render);
+
   const [actualCats, setActualCats] = useState<Cat[]>([]);
   const [favorites, setFavorites] = useState<string[]>(() => {
     const storedFavorites = localStorage.getItem('favorites');
     return storedFavorites ? JSON.parse(storedFavorites) : [];
   });
-  const [loading, setLoading] = useState<boolean>(false);
 
   const handleScroll = () => {
     if (containerRef.current) {
@@ -58,13 +60,9 @@ function AllCats() {
       setActualCats(updatedCats);
       setFavorites((prevFavorites: string[]) => [...prevFavorites, id]);
     } else {
-      const updatedCats = actualCats.map((cat) =>
-        cat.id === id ? { ...cat, liked: false } : cat
-      );
+      const updatedCats = actualCats.filter((cat) => cat.id !== id);
       setActualCats(updatedCats);
-      setFavorites((prevFavorites: string[]) =>
-        prevFavorites.filter((favoriteId) => favoriteId !== id)
-      );
+      setFavorites(favorites.filter((catID) => catID !== id));
     }
   }
 
@@ -86,7 +84,7 @@ function AllCats() {
     } else {
       setMaxPage(0);
     }
-  }, [location]);
+  }, [location, favorites]);
 
   useEffect(() => {
     localStorage.setItem('favorites', JSON.stringify(favorites));
@@ -141,7 +139,7 @@ function AllCats() {
   return (
     <>
       <div className="type-selector">
-        <Form.Check // prettier-ignore
+        <Form.Check
           type="switch"
           id="custom-switch"
           label="Пагинация"

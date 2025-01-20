@@ -21,7 +21,7 @@ const PaginationComponent: React.FC<PaginationComponentProps> = (
   return (
     <>
       {!count && (
-        <Pagination className="pagination">
+        <Pagination>
           {paginationPage > 3 && (
             <Pagination.Item onClick={() => setPage(1)}>{1}</Pagination.Item>
           )}
@@ -67,7 +67,7 @@ const PaginationComponent: React.FC<PaginationComponentProps> = (
       )}
 
       {count && count <= 6 && (
-        <Pagination className="pagination">
+        <Pagination>
           {[...Array(props.count)].map((_, index) => (
             <Pagination.Item
               key={index + 1}
@@ -80,7 +80,7 @@ const PaginationComponent: React.FC<PaginationComponentProps> = (
         </Pagination>
       )}
       {count && count > 6 && (
-        <Pagination className="pagination">
+        <Pagination>
           {paginationPage > 4 && (
             <Pagination.Item onClick={() => setPage(1)}>{1}</Pagination.Item>
           )}

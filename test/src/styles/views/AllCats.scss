@@ -5,15 +5,19 @@
 }
 .pagination {
     position: absolute;
-    padding-top: 2vh;
     left: 50%;
     transform: translateX(-50%);
 }
 .type-selector {
-    height: 5vh;
     position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     top: 3vh;
     left: 5vw;
+    height: 5vh;
+    width: calc(100% - 10vw);
 }
 .loader {
     display: flex;
@@ -32,6 +36,7 @@
     position: relative;
     height: 67vh;
     margin-top: 6vh;
+    margin-bottom: 2vh;
     overflow-y: auto;
     overflow-x: hidden;
     .spinner {

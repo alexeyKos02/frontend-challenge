@@ -52,7 +52,11 @@ export const fetchFavoriteCats = createAsyncThunk<ResponseCats, string[]>(
 const catsSlice = createSlice({
   name: 'cats',
   initialState,
-  reducers: {},
+  reducers: {
+    setFavoriteCats(state, action: PayloadAction<Cat[]>) {
+      state.favoriteCats = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllCats.pending, (state) => {
@@ -97,4 +101,5 @@ const catsSlice = createSlice({
   },
 });
 
+export const { setFavoriteCats } = catsSlice.actions;
 export default catsSlice.reducer;
